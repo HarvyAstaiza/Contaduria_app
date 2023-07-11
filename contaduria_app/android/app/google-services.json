@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "734619228305",
+    "firebase_url": "https://contaduria-fup-default-rtdb.firebaseio.com",
+    "project_id": "contaduria-fup",
+    "storage_bucket": "contaduria-fup.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734619228305:android:4e267a3350d50aebe9c730",
+        "android_client_info": {
+          "package_name": "com.example.contaduria_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "734619228305-o7mbtchgedm0vspne1qbvajsjel2008l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIPxliHja_GeHUbLJtvkAfhVslnfn5hRE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "734619228305-o7mbtchgedm0vspne1qbvajsjel2008l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
