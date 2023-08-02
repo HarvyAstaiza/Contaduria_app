@@ -30,8 +30,7 @@ class _RegisterState extends State<Register> {
   File? file;
   var options = [
     'Estudiante',
-    'Docente',
-    'Administrativo'
+    
   ];
   var _currentItemSelected = "Estudiante";
   var rool = "Estudiante";
@@ -52,13 +51,16 @@ class _RegisterState extends State<Register> {
                   margin: EdgeInsets.all(12),
                   child: Form(
                     key: _formkey,
+                    
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(
-                          height: 80,
-                        ),
+                        
+                        Image.asset(
+                          'assets/fup_logo.png', width: 100,
+                          height: 100, fit: BoxFit.cover,),// Alto deseado),
+                        
                         Text(
                           "Registrarse",
                           style: TextStyle(
