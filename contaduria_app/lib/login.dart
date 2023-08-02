@@ -17,21 +17,24 @@ class _LoginPageState extends State<LoginPage> {
   final _formkey = GlobalKey<FormState>();
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
-
   final _auth = FirebaseAuth.instance;
-
-
-
-
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      body: Container(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors:[
+                    Color.fromRGBO(0, 87, 144, 1),
+                    Color.fromRGBO(0, 180, 165, 1)],
+                )
+              ),
         child: Column(
           children: <Widget>[
-            Container(
-              color: Colors.blue,
+            Container(              
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: Center(
@@ -43,19 +46,11 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        Image.asset(
+                          'assets/fup_logo_clasico.png'
+                          ,color: Colors.white,width: 150,height: 150,),
                         SizedBox(
-                          height: 30,
-                        ),
-                        Text(
-                          "FUP",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 40,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 20,
+                          height:55,
                         ),
                         TextFormField(
                           controller: emailController,
@@ -63,31 +58,31 @@ class _LoginPageState extends State<LoginPage> {
                             filled: true,
                             prefixIcon: Icon(Icons.group),
                             fillColor: Colors.white.withOpacity(0.3),
-                            hintText: 'Email',
+                            hintText: 'Usuario',
                             enabled: true,
                             contentPadding: const EdgeInsets.only(
-                                left: 14.0, bottom: 8.0, top: 8.0),
+                                left: 30.0, bottom: 8.0, top: 8.0),
                             focusedBorder: OutlineInputBorder(
                               borderSide: new BorderSide(
                                   width: 5,
-                                  color: Color.fromARGB(248, 2, 45, 95)),
-                              borderRadius: new BorderRadius.circular(60),
+                                  color: Color.fromARGB(248, 255, 255, 255)),
+                              borderRadius: new BorderRadius.circular(18),
                             ),
-                            enabledBorder: UnderlineInputBorder(
+                            enabledBorder: OutlineInputBorder(
                               borderSide: new BorderSide(
-                                  width: 5,
-                                  color: Color.fromARGB(248, 2, 45, 95)),
-                              borderRadius: new BorderRadius.circular(70),
+                                  width: 3,
+                                  color: Color.fromARGB(248, 253, 253, 253)),
+                              borderRadius: new BorderRadius.circular(18),
                             ),
                           ),
                           validator: (value) {
                             if (value!.length == 0) {
-                              return "Campo de Correo Vacio ";
+                              return "Campo de Usuario Vacio ";
                             }
                             if (!RegExp(
                                     "^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]")
                                 .hasMatch(value)) {
-                              return ("Correo Invalido");
+                              return ("Usuario Invalido");
                             } else {
                               return null;
                             }
@@ -116,21 +111,21 @@ class _LoginPageState extends State<LoginPage> {
                             prefixIcon: Icon(Icons.lock_outline_rounded),
                             filled: true,
                             fillColor: Colors.white.withOpacity(0.3),
-                            hintText: 'Password',
+                            hintText: 'Contraseña',
                             enabled: true,
                             contentPadding: const EdgeInsets.only(
                                 left: 14.0, bottom: 4.0, top: 15.0),
                             focusedBorder: OutlineInputBorder(
                               borderSide: new BorderSide(
                                   width: 5,
-                                  color: Color.fromARGB(248, 2, 45, 95)),
-                              borderRadius: new BorderRadius.circular(60),
+                                  color: Color.fromARGB(248, 242, 243, 245)),
+                              borderRadius: new BorderRadius.circular(18),
                             ),
-                            enabledBorder: UnderlineInputBorder(
+                            enabledBorder: OutlineInputBorder(
                               borderSide: new BorderSide(
-                                  width: 5,
-                                  color: Color.fromARGB(248, 2, 45, 95)),
-                              borderRadius: new BorderRadius.circular(70),
+                                  width: 3,
+                                  color: Color.fromARGB(248, 240, 241, 241)),
+                              borderRadius: new BorderRadius.circular(18),
                             ),
                           ),
                           validator: (value) {
@@ -150,12 +145,9 @@ class _LoginPageState extends State<LoginPage> {
                           keyboardType: TextInputType.emailAddress,
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 5,
                         ),
                         MaterialButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20.0))),
                           elevation: 5.0,
                           height: 40,
                           onPressed: () {
@@ -168,41 +160,26 @@ class _LoginPageState extends State<LoginPage> {
                           child: Text(
                             "INICIAR SESION",
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 15,
                               color: Colors.white,
                             ),
                           ),
-                          color: Colors.blue[900],
+                        ),SizedBox(height: 50,),
+                        Text(
+                          "¿No tienes Cuenta?",
+                          style: TextStyle(
+                            color: Color.fromARGB(255, 255, 255, 255),
+                          ),
                         ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              color: Colors.blue,
-              width: MediaQuery.of(context).size.width,
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 20,
-                    ),
-                    MaterialButton(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(20.0),
+                        MaterialButton(
+                      child: Text(
+                          "Registrate Aqui",
+                        style: TextStyle(
+                          color: Color.fromARGB(255, 255, 255, 255),
+                          decoration: TextDecoration.underline,
+                          fontSize: 15,
                         ),
                       ),
-                      elevation: 5.0,
-                      height: 40,
                       onPressed: () {
                         Navigator.pushReplacement(
                           context,
@@ -211,19 +188,21 @@ class _LoginPageState extends State<LoginPage> {
                           ),
                         );
                       },
-                      color: Colors.blue[900],
-                      child: Text(
-                        "Registrate",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                        ),
-                      ),
+                      
+                      
                     ),
-                  ],
+                        SizedBox(
+                          height: 25,
+                        ),
+                        
+                      ],
+                    ),
+                  ),
                 ),
               ),
+              
             ),
+           
           ],
         ),
       ),
