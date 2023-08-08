@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'semestres.dart';
 import 'login.dart';
 import 'materias.dart';
 
@@ -29,12 +29,10 @@ class _DocentesState extends State<Docentes> {
           )
         ],
       ),
-      
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
           children: <Widget>[
-            
             DrawerHeader(
               decoration: BoxDecoration(
                 color: Colors.blue,
@@ -50,7 +48,8 @@ class _DocentesState extends State<Docentes> {
             ListTile(
               title: Text('Semestres'),
               onTap: () {
-                
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => semestres()));
               },
             ),
             ListTile(
@@ -67,23 +66,17 @@ class _DocentesState extends State<Docentes> {
               },
             ),
           ],
-          
         ),
       ),
-
       body: Center(
-        
-          // Color de fondo del card (caja)
+        // Color de fondo del card (caja)
         child: ElevatedButton(
-        child: Text('Materias'),
-        onPressed: ()=>{
-          // Función que se ejecutará cuando se haga clic en el botón
-          Navigator.push(
-            context,
-           MaterialPageRoute(builder: (context)=>materias())
-          )
-        }
-      ),
+            child: Text('Materias'),
+            onPressed: () => {
+                  // Función que se ejecutará cuando se haga clic en el botón
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => materias()))
+                }),
       ),
     );
   }
@@ -92,9 +85,7 @@ class _DocentesState extends State<Docentes> {
     CircularProgressIndicator();
     await FirebaseAuth.instance.signOut();
     Navigator.pushReplacement(
-      
       context,
-      
       MaterialPageRoute(
         builder: (context) => LoginPage(),
       ),
