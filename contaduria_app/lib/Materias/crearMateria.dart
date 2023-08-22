@@ -1,20 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'estudiantes.dart';
-import 'docentes.dart';
-import 'administrativos.dart';
-import 'register.dart';
 
-class LoginPage extends StatefulWidget {
+
+class CreateMateriaPage extends StatefulWidget {
   @override
-  _LoginPageState createState() => _LoginPageState();
+  CrearMateriaPage createState() => CrearMateriaPage();
 }
 
-class _LoginPageState extends State<LoginPage> {
-  bool _isObscure3 = true;
-  bool visible = false;
-  final _formkey = GlobalKey<FormState>();
+class CrearMateriaPage extends State<CreateMateriaPage> {
+  
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
   final _auth = FirebaseAuth.instance;
@@ -41,7 +36,7 @@ class _LoginPageState extends State<LoginPage> {
                 child: Container(
                   margin: EdgeInsets.all(50),
                   child: Form(
-                    key: _formkey,
+                    
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -208,92 +203,4 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
-  void route() {
-    User? user = FirebaseAuth.instance.currentUser;
-    var kk = FirebaseFirestore.instance
-        .collection('users')
-        .doc(user!.uid)
-        .get()
-        .then((DocumentSnapshot documentSnapshot) {
-      if (documentSnapshot.exists) {
-        if (documentSnapshot.get('rool') == "Docente") {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Docentes(),
-            ),
-          );
-        } else if (documentSnapshot.get('rool') == "Administrativo") {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Administrativos(),
-            ),
-          );
-        } else {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Estudiante(),
-            ),
-          );
-        }
-      } else {
-        print('Document does not exist on the database');
-      }
-    });
-  }
-  
-  void wrongEmailMessage(){
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          title: Text('Ninguna usuario encontrado para ese correo electrónico.\n!Intente de Nuevo¡',textAlign: TextAlign.center),
-        );
-      });
-  }
-  void wrongPasswordMessage(){
-    showDialog(
-      context: context,
-      builder: (context) {
-        return const AlertDialog(
-          title: Text('Contraseña Incorrecta \n !Intenta de Nuevo¡',textAlign: TextAlign.center),
-        );
-      });
-  }
-
-  
-  void signIn(String email, String password) async {
-    showDialog(
-      context: context,
-      builder: (context){
-        return const Center(
-          child: CircularProgressIndicator(),
-        );
-      }
-    );
-    
-      try {
-        UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
-        Navigator.pop(context);
-        route();
-        
-      } on FirebaseAuthException catch (e) {
-        Navigator.pop(context);
-        if (e.code == 'user-not-found') {
-          wrongEmailMessage();
-        }else if (e.code == 'wrong-password') {
-          wrongPasswordMessage();
-        }
-      }
-      
-    }
-  
-  }
-
+}

@@ -42,6 +42,7 @@ dependencies:
   firebase_core: ^2.14.0
   firebase_auth: ^4.6.3
   cloud_firestore: ^4.8.2
+  shared_preferences: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -98,3 +99,10 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: Gotham_Light
+      fonts:
+        - asset: assets\fonts\Gotham_Light.otf
+    - family: Gotham_Bold
+      fonts:
+        - asset: assets\fonts\Gotham Bold.otf   
